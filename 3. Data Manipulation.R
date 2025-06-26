@@ -27,27 +27,31 @@ data(mtcars)
 # 2.1 CSV 파일 입출력
 # read.csv()를 사용
 
-setwd("/Users/kyungminahn/Dropbox/KMU/자료처리응용실습")
-x <- read.csv("a.csv", header = FALSE)
-x <- read.csv("a.csv", header = TRUE)
+setwd("C:/jhoney0625")
+x <- read.csv("a.csv", header = FALSE) # header는 변수를 나타냄
+x <- read.csv("a.csv", header = TRUE)   
 
+x
 str(x)
 
 x <- read.csv("b.csv")
-names(x) <- c("id", "name", "score")
+x
+names(x) <- c("id", "name", "score") # 변수명을 지정 
 str(x)
+x
 
 x <- read.csv("c.csv")
-str(x)
-x <- read.csv("c.csv", na.strings = c("NIL"))
 x
-is.na(x$score)
+str(x)
+x <- read.csv("c.csv", na.strings = c("NIL")) # NIL데이터를 NA로 바꿔줌
+x
+is.na(x$score) ## score변수의 값에서 NA가 false 인지 true인지나타냄 
 
 # 데이터를 파일로 저장하기
 write.csv(x, 'd.csv', row.names = F)
 
 ########### 3. save(), load() ###############
-# 데이터를 다양한 알고리즘으로 처리한뒤 저장할 피요가 있을시
+# 데이터를 다양한 알고리즘으로 처리한뒤 저장할 필요가 있을시
 # R 객채를 그대로 파일로 저장 할수 있음
 
 x <- 1:5 
@@ -69,17 +73,17 @@ rbind(c(1, 2, 3), c(4, 5, 6))
 x <- data.frame(id=c(1, 2), name=c("a", "b"))
 x
 
-y <- rbind(x, c(3, "c"))
+y <- rbind(x, c(3, "c")) # rbind() 행을 붙여주는 것 
 y
 
-cbind(c(1, 2, 3), c(4, 5, 6))
+cbind(c(1, 2, 3), c(4, 5, 6)) # cbind() 열을 붙여주는것
 
 y <- cbind(x, greek=c('alpha', 'beta'))
 y
 str(y)
 
 ################# 5. Apply 함수 ##############
-# 다양한 벡터 또는 행렬데이터에 임의의 함수를 적용한 결과를 얻기 휘한 함수
+# 다양한 벡터 또는 행렬데이터에 임의의 함수를 적용한 결과를 얻기 위한 함수
 
 # apply()
 # 행렬의 행 또는 열방향으로 특정함수를 적용하는데 사용
@@ -143,7 +147,7 @@ sort(x)
 sort(x, decreasing=TRUE)
 
 order(x)
-#x[order(x)]
+x[order(x)]
 
 order(-x)
 
@@ -151,7 +155,7 @@ head(iris[order(iris$Sepal.Length), ])
 head(iris[order(iris$Sepal.Length , iris$Petal.Length), ])
 
 
-############ 10. with(), whithin() ##########
+############ 10. with(), whithin() ########## 생략
 
 # with()는 데이터 프레임 또는 리스트 내 필드를 손쉽게 
 # 접근하기 위한 함수
@@ -168,7 +172,7 @@ x
 x <- within(x, { val <- ifelse(is.na(val), median(val, na.rm=TRUE), val) })
 x
 
-############ 11. attach(), detach() ##########
+############ 11. attach(), detach() ########## 거의 쓰지 않음
 
 # attach()는 인자로 주어진 데이터 프레임이나라 리스트를 곧바로 접근 가능하게 해줌
 
@@ -210,7 +214,7 @@ which.max(x)
 x[which.max(x)]
 
 
-############ 13. aggregate() #################
+############ 13. aggregate() ################# 생략
 
 # 일반적인 그룹별 연산을 위한 함수
 aggregate(Sepal.Width ~ Species, iris, mean)

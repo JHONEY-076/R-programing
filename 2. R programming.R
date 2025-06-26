@@ -92,12 +92,37 @@ for (i in 1:length(x)){
   print(x[i])
 }
 
+##for(i in  seq(2:9)){
+  ##for(j in seq(1:9))
+    ##print(paste(i,"x",j,"=",i*j))
+##}
+
+
+for(i in 2:9){
+  for(j in 1:9){
+    print(paste(i,"x",j,"=",i*j))
+  }
+}
+
+
+## 짝수 몇개인지 구하는 코드 
 x <- c(2,5,3,9,8,11,6)
 count <- 0
 for (val in x) {
   if(val %% 2 == 0)  count = count+1
 }
 print(count)
+
+## 홀수 가 몇개인지 구하는 코드
+y=c(1,3,5,8,10,11)
+count=0
+for(i in y ){
+  if(i%%2==1)
+    count =count+1
+}
+print(count)
+
+
 
 
 # while statement
@@ -114,11 +139,39 @@ while (i < 10) {
    i <- i + 1
 }
 
+i=1
+while(i<10){
+  print(i)
+  i=i+1
+  
+}
+
+
+
 i <- 1
 while (i < 6) {
   print(i)
   i = i+1
 }
+
+i= -1
+while(i<6){
+  print(i)
+  i=i+1
+}
+
+
+i=2
+j=1
+while(i<=9){
+  while(j<=9){
+    print(paste(i,"x",j,"=",i*j))
+    j=j+1
+  }
+  i=i+1
+  j=1
+}
+
 
 # next
 # while문의 처음으로 들어감
@@ -196,7 +249,9 @@ NA + 1
 
 sum(c(1, 2, 3, NA))
 
-sum(c(1, 2, 3, NA), na.rm =T)
+sum(c(1, 2, 3, NA), na.rm =T) # (rm= remove),기본적으로 na.rm은 디폴트 값으로 False
+
+
 
 ################# 3. 함수 ####################
 
@@ -206,6 +261,30 @@ sum(c(1, 2, 3, NA), na.rm =T)
 # 함수 본문
 # return(반환값)
 #}
+
+
+testpn=function(x){
+  if(x > 0){
+    print("Positive number")
+  }
+  else{
+    print("negative number")
+  }
+}
+
+testpn(3)
+testpn(-1)
+
+
+multinum=function(x){
+  for(i in 1:9){
+      print(paste(x,"x",i,"=",x*i))
+  }
+}
+
+multinum(3)
+
+
 
 # 피보나치 수열 1  1   2   3   5  8
 fibo <- function (n) {
@@ -217,6 +296,7 @@ fibo <- function (n) {
 
 fibo(5)
 fibo(6)
+
 
 # tip
 
