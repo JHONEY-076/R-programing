@@ -5,7 +5,7 @@
 
 
 ##############################################
-############### 5. Statistical Analysis  ##
+############### 5. Statistical Data Analysis  ##
 ##############################################
 
 ############### 1. 난수 생성 및 분포 함수  ##############
@@ -14,9 +14,17 @@
 
 # random number (난수)를 만드려면 앞에 r을 붙인다.
 
-rnorm (100 , 0, 10)
+rnorm (1 , 0, 10) # 정규분포의 랜덤 넘버 
+
+set.seed(1)
+x=rnorm(10,0,10)
+x
+
+mean(x)
+
 
 plot(density(rnorm(1000000, 0, 10)))
+plot(density(runif(1000000, 0, 10)))
 
 # 누적분포(cdf)는 앞에 p를 붙인다
 
@@ -52,8 +60,11 @@ fivenum(1:11)
 summary(1:11)
 
 
-fivenum(1:4)
-summary(1:4)
+fivenum(1:8)
+#  1   2 |  3  4 |  5  6 | 7  8
+# 1.0 2.5 4.5 6.5 8.0
+
+summary(1:8)
 
 # 1st Q - 1 + (4-1)*(1/4)
 # 3rd Q - 1 + (4-1)*(3/4)
@@ -74,11 +85,11 @@ names(table(x))[3]
 
 # 3.1 단순임의 추출 (random sampling)
 
-sample(1:10, 5)
+sample(1:10, 5) # 1~10 사이의 숫자 중엣 5개만 뽑기
 
-sample(1:10, replace = TRUE)
+sample(1:10, replace = TRUE) # 중복을 줄지 허용하는 경우
 
-#각각에 가중치 (weight)를 줄경우
+#각각에 가중치 (weight)를 줄경우 
 sample (1:10 , 5, replace =TRUE , prob =1:10) 
 
 # sample()은 주어진 데이터의 순서를 보존 X. shuffle로 사용 가능
@@ -116,7 +127,7 @@ strata(c("Species"), size =c(3, 1, 1) , method ="srswr", data = iris )
 
 
 
-# 3.3 계통 추출 (Systematic Sampling)
+# 3.3 계통 추출 (Systematic Random Sampling)
 
 # 아침부터 밤까지 특정한 지역을 지나간 차량의 번호를 모두 조사하였고, 이들로부터 조사 대
 # 상을 뽑는 경우를 가정해보자. 가장 간단한 단순 임의 추출을 적용하여 차량 번호를 뽑는다면
@@ -144,9 +155,13 @@ doBy::sampleBy( ~1, frac =.3 , data =x, systematic = TRUE)
 
 # 5.1 Chi-Square test
 
-# survey 데이터를 사용해 글씨를을 왼손으로 쓰는 사람과 오른손으로 쓰는 사람의 비율이
+# survey 데이터를 사용해 글씨를 왼손으로 쓰는 사람과 오른손으로 쓰는 사람의 비율이
 # 30% : 70%인지의 여부를 분석해보자. 
 # 귀무가설(H0)은 분할표에 주어진 관측 데이터가 주어진 분포를 따른다는 것이다.
+# 대립가설(H1)은 분할표에 주어진 관측 데이터가 주어진 분포를 따르지 않은것이다.
+#p-value<0.05(alpha) => 귀무가설 기각
+
+
 
 library(MASS)
 data(survey)
@@ -155,11 +170,21 @@ table(survey$W.Hnd)
 chisq.test(table(survey$W.Hnd), p=c(.3 , .7))
 
 
+
+
+
+
 # 5.2 Shapiro-Wilk Test
 
 # 표본이 정규분포로 부터 추출된 것인지 테스트하기 위한 방법
 
 shapiro.test(rnorm(1000))
+
+
+
+
+
+
 
 # 5.3 Kolmogorov-Smirnov Test
 
@@ -175,6 +200,9 @@ ks.test(rnorm(100), runif(100))
 
 
 ks.test(rnorm(1000), "pnorm", 0, 1)
+
+
+
 
 
 # Q-Q plot
@@ -229,7 +257,7 @@ corrgram(cor(iris[ ,1:4]), type ="corr",upper.panel = panel.conf)
 # 계산 방법이 피어슨 상관계수와 유사해 이해가 쉽고, 피어슨
 # 상관계수와 달리 비선형 관계의 연관성을 파악할 수 있다는 장점
 
-# 순위만 매길수 있다면 적용이 가능하므로 연속형(Continous) 데이터에 
+# 순위만 매길수 있다면 적용이 가능하므로 연속형(Continuous) 데이터에 
 # 적합한 피어슨 상관계수와 달리 이산형(Discrete) 데이터, 순서형(Ordinal) 
 # 데이터에 적용이 가능
 
@@ -296,9 +324,9 @@ tapply(sleep2$extra, sleep2$group, mean)
 
 # 모분산이 같은지 먼저 검정
 
-var.test(extra ~ group, sleep2)
+var.test(extra ~ group, sleep2) # 2 variances are equal
 
-t.test(extra ~ group, data = sleep2, paired =FALSE, var.equal = TRUE)
+t.test(extra ~ group, data = sleep2, var.equal = TRUE)
 
 
 # 7.3 짝지은 이표본 평균 (Paired t-test)

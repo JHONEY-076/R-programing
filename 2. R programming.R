@@ -105,6 +105,23 @@ for(i in 2:9){
 }
 
 
+for(i in -9:9){
+  if(i<0){
+    print("음수입니다.")
+  }
+  else{
+    for(j in 1:9){
+      print(paste(i,"x",j,"=",i*j))
+    }
+    
+  }
+}
+
+
+
+
+
+
 ## 짝수 몇개인지 구하는 코드 
 x <- c(2,5,3,9,8,11,6)
 count <- 0
@@ -173,6 +190,9 @@ while(i<=9){
 }
 
 
+
+
+
 # next
 # while문의 처음으로 들어감
 
@@ -185,6 +205,9 @@ while (i <=9){
   }
   print(i)
 }
+
+
+
 
 
 ################# 2. 연산 ####################
@@ -348,4 +371,101 @@ f <- function () {
   print (x)
 }
 f()
+
+
+
+
+
+
+## Quiz 2
+
+## 1.문제 
+
+for(i in -9:9){
+  if(i<0){
+    print("음수입니다.")
+  }
+  else{
+    for(j in 1:9){
+      print(paste(i,"x",j,"=",i*j))
+    }
+    
+  }
+}
+
+ff=function(x){
+  if(x<0){
+    print("nagative number")
+  }
+  else{
+    for(i in 1:9){
+      print(paste(x,"x",i,"=",x*i))
+    }
+  }
+}
+
+ff(3)
+
+
+
+
+# 2번 문제 
+for(i in 2:9){
+  if(i%%2==0){
+  for(j in 1:9){
+    print(paste(i,"x",j,"=",i*j))
+  }
+  }
+}
+
+
+# 3번 문제
+i=2
+j=1
+while(i<=9){
+  
+  if(i%%2!=0){
+    j=1
+    while (j<=9) {
+      print(paste(i,"x",j,"=",i*j))   
+      j=j+1
+    }
+  }
+  i=i+1
+}
+
+
+
+#4번 문제
+is_pos=function(num){
+  if(num>0){
+    print(T)
+  }
+  else{
+    print(F)
+  }
+  
+}
+
+is_pos(-3)
+
+
+#5번 문제
+is_even=function(num){
+  if(num%%2==0){
+    print(T)
+  }
+  else{
+    print(F)
+  }
+}
+
+is_even(4)
+
+
+
+
+
+
+
 

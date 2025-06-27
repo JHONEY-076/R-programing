@@ -29,13 +29,17 @@ data(mtcars)
 
 setwd("C:/jhoney0625")
 x <- read.csv("a.csv", header = FALSE) # header는 변수를 나타냄
-x <- read.csv("a.csv", header = TRUE)   
+x
 
+
+x <- read.csv("a.csv", header = TRUE)   
 x
 str(x)
 
 x <- read.csv("b.csv")
 x
+
+
 names(x) <- c("id", "name", "score") # 변수명을 지정 
 str(x)
 x
@@ -76,10 +80,11 @@ x
 y <- rbind(x, c(3, "c")) # rbind() 행을 붙여주는 것 
 y
 
-cbind(c(1, 2, 3), c(4, 5, 6)) # cbind() 열을 붙여주는것
 
+cbind(c(1, 2, 3), c(4, 5, 6)) # cbind() 열을 붙여주는것
 y <- cbind(x, greek=c('alpha', 'beta'))
 y
+
 str(y)
 
 ################# 5. Apply 함수 ##############
@@ -93,6 +98,7 @@ str(y)
 
 sum(1:10)
 d <- matrix(1:9, ncol= 3)
+d
 apply(d, 1, sum)
 apply(d, 2, sum)
 
@@ -108,7 +114,7 @@ rowSums(iris[, 1:4])
 # 데이터를 분리하는데 사용
 # split(데이터, 분리조건)
 
-split(iris, iris$Species)
+split(iris, iris$Species) #=>종별로 데이터를 분리함
 
 
 ############ 7. subset() #################
@@ -218,3 +224,51 @@ x[which.max(x)]
 
 # 일반적인 그룹별 연산을 위한 함수
 aggregate(Sepal.Width ~ Species, iris, mean)
+
+
+#Quiz3
+
+#1.
+library(help=datasets)
+data(USArrests)
+head(USArrests)
+
+
+
+#2
+Rape=c(112,21,32,4,55,61)
+
+order(-Rape)
+Rape[order(-Rape)]
+
+
+#3 
+murder= c(1,2,3,11,12,34,7)
+
+which(murder>10)
+murder[which(murder>10)]
+
+
+#4
+
+write.csv(murder[which(murder>10)], 'abc.csv', row.names = F)
+
+
+#5
+
+data(USArrests)
+USArrests
+
+plot(USArrests$UrbanPop,USArrests$Murder)
+plot ( USArrests $UrbanPop , USArrests $Murder , xlab ="Urban Population", ylab ="Murder",main = "US Arrests")
+
+
+#6
+
+par( mfrow =c(1, 2)) # 행렬
+plot(USArrests$UrbanPop,USArrests$Murder,xlab = "Urban Population", ylab = "Murder",main = "Murder")
+plot(USArrests$UrbanPop,USArrests$Rape,xlab = "Urban Population", ylab = "Rape", main="Rape")
+
+
+
+

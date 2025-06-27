@@ -10,6 +10,12 @@
 
 ############### 1. 단순선형회귀 (Simple Linear Regression)  ##############
 
+#y=f(x)+error
+
+#f(x): 예측변수= 설명변수 = 독립변수 
+#y: 반응 변수, 종속 변수
+
+
 # 선형 회귀는 독립변수와 종속 변수간의 관계를 모델링하는 기법
 # 머신러닝에서 예측 모델링 중 가장 기초가 되는 모델
 # 이때 독립변수가 하나이면 단순 (Simple) 선형 회귀라고 하고 2개 이상이면
@@ -17,6 +23,9 @@
 
 # 기본적인 모델은
 # y_i = \beta_0 + \beta_1 X_{1, 1} + ... + \beta_p X_{i,p} + \epsilon_i
+# 
+
+
 
 # 선형호귀 모형은 다음과 같은 전제가 따른다
 
@@ -36,6 +45,9 @@ head(cars)
 
 m <- lm(dist ~ speed, cars)
 m
+
+
+summary(m)
 
 # 1.2 예측 (fitted values)
 
@@ -63,4 +75,7 @@ predict(m, newdata = data.frame(speed = 3))
 # 1.4 모형 평가
 
 summary(m)
+# R-squred:  평가
+
 plot(m)
+

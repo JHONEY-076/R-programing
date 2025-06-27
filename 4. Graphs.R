@@ -20,7 +20,12 @@ methods("plot")
 install.packages("mlbench")
 library ( mlbench )
 data ( Ozone )
+Ozone
 plot ( Ozone $V8 , Ozone $V9)
+
+
+
+
 
 # plot은 (x, y)의 순서로 입력을 받으며, x와 y가 숫자형 데이터의 경우 산점도를 그려줌
 
@@ -32,21 +37,27 @@ plot ( Ozone $V8 , Ozone $V9)
 
 plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ")
 
+
 # 2.2 그래프 제목 (main)
 
 plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ")
 
+
 # 2.3 점의 종류 (pch)
 
-plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ", pch =20)
+plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ", pch =20) 
 
 plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ", pch="+")
 
 # google r pch symbol 로 확인
 
+
+
 # 2.4 점의 크기 (cex)
 
-plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ", cex=.1)
+plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ", ylab ="El Monte Temperature ", main =" Ozone ", cex=1)
+
+
 
 # 2.4 색상 (col)
 
@@ -76,7 +87,7 @@ head(cars)
 plot(cars)
 
 plot (cars , type ="l")
-plot (cars , type ="o", cex =0.5)
+plot (cars , type ="o", cex =1)
 
 # 주행속도에 대해 두개 이상의 제동거리가 있는 경우가 많아
 # 어색해보임. 이 문제를 해결하기 위해 tapply를 사용
@@ -97,7 +108,8 @@ plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ",
 par(opar)
 
 
-par( mfrow =c(1, 2))
+## 자주 쓰는 그래프 분할 
+par( mfrow =c(4, 4)) # 행렬
 
 plot ( Ozone $V8 , Ozone $V9 , xlab =" Sandburg Temperature ",
        ylab ="El Monte Temperature ", main =" Ozone ")
@@ -126,10 +138,14 @@ plot ( jitter(Ozone $V6) , jitter(Ozone $V7) , xlab =" Windspeed ", ylab =" Humi
 
 ############### 5. 점 (points) ####################
 
-plot ( iris $ Sepal.Width , iris $ Sepal.Length , cex =.5 , pch =20 ,
+plot ( iris $ Sepal.Width , iris $ Sepal.Length , cex =1 , pch =20 ,
       xlab =" width ", ylab =" length ", main =" iris ")
-points ( iris $ Petal.Width , iris $ Petal.Length , cex =.5 ,
+
+## 한 그래프에 데이터를 겹쳐서 쓰고 싶은 경우
+points ( iris $ Petal.Width , iris $ Petal.Length , cex =1 ,
            pch="+", col="red ")
+
+
 
 ############### 6. 선 (lines) ###################
 
@@ -138,6 +154,8 @@ y <- sin(x)
 plot (x, y, cex=.5 , col ="red ")
 lines (x, y)
 
+
+# <생략> 
 # LOWESS (locally estimated scatterplot smoothing)를 적용
 # 데이터의 각점에서 inear model(y = ax + b) 또는 quadratic model(y = ax2 + bx + c)을 각각
 # 적합하되, 각 점에서 가까운 데이터에 많은 weight를 주면서 regression을 수행
@@ -160,7 +178,8 @@ plot (cars , xlim =c(0, 25) )
 abline (a=-5, b=3.5 , col ="red ")
 abline (h= mean ( cars $ dist ), lty =2, col=" blue ")
 abline (v= mean ( cars $ speed ), lty =2, col=" green ")
-
+abline(h=100)
+abline(v=5)
 ############### 8. 곡선 (curve) ###################
 
 curve(sin, 0, 2*pi)
@@ -184,13 +203,14 @@ identify ( cars $ speed , cars $ dist )
 
 ############### 11. 범례 (legend) ###################
 
-plot ( iris $ Sepal.Width , iris $ Sepal.Length , cex =.5 , pch =20 ,
+plot ( iris $ Sepal.Width , iris $ Sepal.Length , cex =1 , pch =20 ,
        xlab =" width ", ylab =" length ")
-points ( iris $ Petal.Width , iris $ Petal.Length , cex =.5 ,
+points ( iris $ Petal.Width , iris $ Petal.Length , cex =1 ,
          pch="+", col="red ")
 
 legend ("topright", legend =c(" Sepal ", " Petal "),
-        pch=c(20 , 43) , cex=.8 , col=c(" black ", "red"), bg=" gray ")
+        pch=c(20 , 43) , cex=1 , col=c(" black ", "red"), bg=" gray ")
+
 
 
 ########## 12. matplot, matlines, matpoints #############
@@ -207,6 +227,12 @@ abline(h=0, v=0)
 
 
 ########### 13. Boxplot (상자그림) ##################
+# Range(R)=max-min
+#IQR= Q3-Q1
+#UF= Q3+1.5*IQR
+#LF=Q1-1.5*IQR
+
+
 
 boxplot ( iris $ Sepal.Width )
 
@@ -235,6 +261,8 @@ lines ( density ( iris $ Sepal.Width ))
 
 
 ############ 16. barplot (막대) ###################
+
+## 히스토그램과 barplot의 차이점: 히스토그램은 범주형 데이터 barplot은 비범주형 데이터 
 
 barplot ( tapply ( iris $ Sepal.Width , iris $ Species , mean ))
 
