@@ -242,16 +242,17 @@ order(-Rape)
 Rape[order(-Rape)]
 
 
-#3 
-murder= c(1,2,3,11,12,34,7)
+sort(USArrests$Rape,decreasing = T)
+USArrests$Rape[order(USArrests$Rape,decreasing = T)]
 
-which(murder>10)
-murder[which(murder>10)]
+#3 
+USArrests$Murder[USArrests$Murder>10]
 
 
 #4
 
-write.csv(murder[which(murder>10)], 'abc.csv', row.names = F)
+write.csv(a,file="temp.csv")
+a
 
 
 #5

@@ -43,7 +43,7 @@ head(cars)
 
 # 모델링: dist = \beta_0 + speed X \beta_1 + \epsilon
 
-m <- lm(dist ~ speed, cars)
+m <- lm(dist ~ speed, cars)  
 m
 
 
@@ -78,4 +78,39 @@ summary(m)
 # R-squred:  평가
 
 plot(m)
+
+
+
+set.seed(123)
+split= initial_split(ames,pro=0.7,
+                     strata="Sale_price")
+
+ames_train=training(split)
+ames_test=testing(split)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
